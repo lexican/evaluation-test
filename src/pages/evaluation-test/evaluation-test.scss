@@ -1,0 +1,45 @@
+.evaluation-test {
+  height: 700px;
+  background: #ffffff;
+  width: 100%;
+  padding: 80px;
+  h2 {
+    font-size: 30px;
+    font-weight: 400;
+    color: #000000;
+  }
+  .view-report-btn {
+    background: #0f77f0;
+    color: #ffffff;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 100px;
+    box-shadow: none !important;
+  }
+  .inner-container {
+    background: #ecf1f4;
+    padding: 54px 108px;
+    margin-top: 41px;
+    border-radius: 16px;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  .copy-link-btn {
+    color: #0f77f0;
+    border: 1px solid #0f77f0;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: none !important;
+  }
+  p {
+    color: #000000;
+    font-size: 24px;
+    font-weight: 400;
+  }
+  .link-container {
+    border-bottom: 1px solid #000000;
+    padding-bottom: 8px;
+  }
+}
