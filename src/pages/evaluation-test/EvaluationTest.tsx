@@ -3,9 +3,11 @@ import CopyToClipboard from "react-copy-to-clipboard";
 
 import "./evaluation-test.scss";
 const EvaluationTest = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [evaluationLink, setEvaluationLink] = useState(
     "https://evaluationtest-session234-live"
   );
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [copied, setCopied] = useState(false);
   return (
     <div className="evaluation-test">
