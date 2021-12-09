@@ -1,0 +1,27 @@
+.evaluation-que {
+  background: #ffffff;
+  width: 100%;
+  padding: 80px;
+  h2 {
+    font-size: 30px;
+    font-weight: 400;
+    color: #000000;
+  }
+  .sub-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2a2a3a;
+    margin-bottom: 50px;
+    border-radius: 16px;
+  }
+  .submit-btn {
+    background: #0f77f0;
+    color: #ffffff;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 100px;
+    box-shadow: none !important;
+    margin-top: 51px;
+  }
+}
