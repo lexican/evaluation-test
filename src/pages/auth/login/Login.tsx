@@ -1,10 +1,11 @@
-import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+
 import "./login.scss";
+import axios from "axios";
 
 const loginSchema = Yup.object().shape({
-  username: Yup.string().required("Required"),
+  email: Yup.string().email("Invalid email format").required("Required"),
   password: Yup.string().required("Required"),
 });
 
@@ -19,12 +20,34 @@ export default function Login() {
             <Formik
               enableReinitialize={true}
               initialValues={{
-                username: "",
+                email: "",
                 password: "",
               }}
               validationSchema={loginSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
-                // setSubmitting(true);
+                setSubmitting(true);
+                axios
+                  .post("/users/login/", {
+                    email: values.email,
+                    password: values.password,
+                  })
+                  .then((response) => {
+                    const {token} = response.data;
+                    localStorage.setItem('token', token);
+                    setSubmitting(false);
+                    resetForm();
+                  })
+                  .catch((error) => {
+                    if (error.response) {
+                      console.log(error.response);
+                    } else if (error.request) {
+                      console.log(error.request);
+                    } else {
+                      console.log("Error", error.message);
+                    }
+                    console.log(error.config);
+                    setSubmitting(false);
+                  });
               }}
             >
               {({ isSubmitting, errors }) => (
@@ -35,10 +58,10 @@ export default function Login() {
                       type="text"
                       className="form-control"
                       placeholder=""
-                      name="username"
+                      name="email"
                     />
                     <ErrorMessage
-                      name="username"
+                      name="email"
                       component="div"
                       className="form-error"
                     />
@@ -62,7 +85,7 @@ export default function Login() {
                       <button
                         type="submit"
                         className="btn"
-                        //disabled={isSubmitting}
+                        disabled={isSubmitting}
                       >
                         LOG IN
                       </button>

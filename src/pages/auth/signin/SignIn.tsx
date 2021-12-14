@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "../login/login.scss";
+import axios from "axios";
 
 const SignupSchema = Yup.object().shape({
-  username: Yup.string().required("Required"),
+  email: Yup.string().email("Invalid email format").required("Required"),
   password: Yup.string().required("Required"),
   confirm_password: Yup.string().oneOf(
     [Yup.ref("password"), null],
@@ -13,6 +14,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 export default function SignUp() {
+  const [error, setError] = useState<string>("");
   return (
     <div className="login">
       <div className="container">
@@ -23,27 +25,54 @@ export default function SignUp() {
             <Formik
               enableReinitialize={true}
               initialValues={{
-                username: "",
+                email: "",
                 password: "",
                 confirm_password: "",
               }}
               validationSchema={SignupSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
-                // setSubmitting(true);
+                setSubmitting(true);
+                setError("");
+                axios
+                  .post("/users/", {
+                    email: values.email,
+                    password: values.password,
+                    confirm_password: values.confirm_password,
+                  })
+                  .then((response) => {
+                    const { token } = response.data;
+                    console.log(token);
+                    //localStorage.setItem('token', token);
+                    setSubmitting(false);
+                    //resetForm();
+                  })
+                  .catch((error) => {
+                    if (error.response) {
+                      console.log(error.response);
+                    } else if (error.request) {
+                      console.log(error.request);
+                    } else {
+                      console.log("Error", error.message);
+                    }
+                    console.log(error.config);
+                    setSubmitting(false);
+                    setError("user with this E-mail Address already exists.");
+                  });
               }}
             >
               {({ isSubmitting, errors }) => (
                 <Form>
+                  {error && <div className="form-error">{error}</div>}
                   <div className="col mb-3">
                     <label className="form-label">Email ID</label>
                     <Field
                       type="text"
                       className="form-control"
                       placeholder=""
-                      name="username"
+                      name="email"
                     />
                     <ErrorMessage
-                      name="username"
+                      name="email"
                       component="div"
                       className="form-error"
                     />
@@ -81,7 +110,7 @@ export default function SignUp() {
                       <button
                         type="submit"
                         className="btn"
-                        //disabled={isSubmitting}
+                        disabled={isSubmitting}
                       >
                         Sign up
                       </button>
