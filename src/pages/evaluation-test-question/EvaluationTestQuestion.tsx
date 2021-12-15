@@ -77,6 +77,8 @@ const EvaluationTestQuestion = () => {
         .post("surveys/evaluation/?survey_id=" + id, evaluationAnswer)
         .then((response) => {
           console.log(response.data);
+          alert("Thank you for filling this survey");
+          setEvaluationAnswer(answer);
         })
         .catch((error) => {
           if (error.response) {
