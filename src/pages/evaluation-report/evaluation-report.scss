@@ -1,0 +1,33 @@
+.evaluation-report {
+  height: 700px;
+  background: #ffffff;
+  width: 100%;
+  padding: 80px;
+  h2 {
+    font-size: 30px;
+    font-weight: 400;
+    color: #000000;
+  }
+  .sub-title {
+    font-size: 20px;
+    color: #000000;
+  }
+  .report-container {
+    border-radius: 16px;
+    background: #ecf1f4;
+    padding: 31px 78px;
+    margin-bottom: 20px;
+  }
+  .fs-18 {
+    font-size: 18px;
+  }
+  .fs-20 {
+    font-size: 20px;
+  }
+  .fs-24 {
+    font-size: 24px;
+  }
+  .title{
+    width: 170px;
+  }
+}

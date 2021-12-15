@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import EvaluationTestQue from "../../components/evaluation-test-quesion/EvaluationTestQue";
 import "./evaluation-test-question.style.scss";
 
@@ -41,9 +42,11 @@ const EvaluationTestQuestion = () => {
     getSurveyQuestion();
   }, []);
 
+  let { id } = useParams();
+
   const getSurveyQuestion = () => {
     axios
-      .get("/surveys/questions/?survey_id=1")
+      .get("/surveys/questions/?survey_id=" + id)
       .then((response) => {
         setEvaluationQuestions(response.data);
       })
@@ -71,9 +74,7 @@ const EvaluationTestQuestion = () => {
     } else {
       console.log(evaluationAnswer);
       axios
-        .post("surveys/evaluation/?survey_id=1", {
-          'data': evaluationAnswer,
-        })
+        .post("surveys/evaluation/?survey_id=" + id, evaluationAnswer)
         .then((response) => {
           console.log(response.data);
         })

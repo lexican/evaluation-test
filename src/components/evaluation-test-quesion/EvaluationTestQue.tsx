@@ -14,7 +14,7 @@ const EvaluationTestQue: FC<IProps> = ({ iQuestion, onSelect }) => {
   }
   return (
     <div className="question">
-      <p>{iQuestion.question}</p>
+      <p>Q{iQuestion.id}. {iQuestion.question}</p>
       <div className="d-flex">
         <div className="form-check d-flex flex-column justify-content-cente align-items-center">
           <input
