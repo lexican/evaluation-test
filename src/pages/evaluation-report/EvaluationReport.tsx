@@ -45,10 +45,10 @@ export default function EvaluationReport() {
           response.data;
 
         setEvaluationReport({
-          accessibility: accessibility,
-          attractiveness: attractiveness,
-          navigation: navigation,
-          understanability: understanability,
+          accessibility: accessibility.toFixed(2),
+          attractiveness: attractiveness.toFixed(2),
+          navigation: navigation.toFixed(2),
+          understanability: understanability.toFixed(2),
         });
       })
       .catch((error) => {

@@ -74,11 +74,12 @@ const EvaluationTestQuestion = () => {
     } else {
       console.log(evaluationAnswer);
       axios
-        .post("surveys/evaluation/?survey_id=" + id, evaluationAnswer)
+        .post("/surveys/evaluation/?survey_id=" + id, evaluationAnswer)
         .then((response) => {
           console.log(response.data);
           alert("Thank you for filling this survey");
           setEvaluationAnswer(answer);
+          window.location.reload(); 
         })
         .catch((error) => {
           if (error.response) {
